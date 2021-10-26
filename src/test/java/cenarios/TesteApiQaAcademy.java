@@ -1,5 +1,9 @@
 package cenarios;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
 import io.restassured.RestAssured;
@@ -43,8 +47,54 @@ public class TesteApiQaAcademy {
 		.when() //Disparo
 		.get("http://localhost:8080/exercicios/parOuImpar?numero=assured") //endereço
 		.then() //Validação
-		.statusCode(500); // codigo retornado
+		.statusCode(400); // codigo retornado
 	
 	}
+	
+	
+	@Test
+	public void testeParOuImparStatusQueryParam() {
+		String numero = "10";
+
+		RestAssured.given().queryParam("numero", numero)
+				.when()
+				.get("http://localhost:8080/exercicios/parOuImpar") //endereço
+				.then().assertThat()
+				.log().all();
+			
+	}
+	
+	@Test
+	public void testeParOuImparStatusQueryParamPorMap() {
+		String numero = "10";
+		
+		Map<String, String> queryParams = new HashMap();
+		queryParams.put("numero", numero); 
+
+		RestAssured.given().queryParams(queryParams)
+				.when()
+				.get("http://localhost:8080/exercicios/parOuImpar") //endereço
+				.then().assertThat()
+				.log().all();
+			
+	}
+	
+	
+	
+	@Test
+	public void testeParOuImparStatusQueryParamComValidacao() {
+		String numero = "10";
+
+		RestAssured.given().queryParam("numero", numero)
+				.when()
+				.get("http://localhost:8080/exercicios/parOuImpar") //endereço
+				.then().assertThat()
+				.log().all()
+				.body( Matchers.equalTo("O numero 10 é par"));
+			
+	}
+	
+	
+	
 	
 }
