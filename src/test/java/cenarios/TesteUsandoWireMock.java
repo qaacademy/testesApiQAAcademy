@@ -48,6 +48,22 @@ public class TesteUsandoWireMock {
 
 	}
 	
+	@Test
+	public void exemploTokenWireMockTest() {
+		stubFor(get("/api/testeOauth").withHeader("Content-Type", containing("json")).withBasicAuth("qaacademy@gmail.com", "teste")
+				.willReturn(
+				ok().withHeader("Content-Type", "application/json").withBody("Usuario adicionado com sucesso!")));
+
+		RestAssured.given()
+		.header("Content-Type", "application/json").and().header("Authorization", "Basic cWFhY2FkZW15QGdtYWlsLmNvbTp0ZXN0ZQ==")
+		.when()
+		.get("http://localhost:8089/api/testeOauth") // endereço
+				.then().assertThat().log().all().body(Matchers.equalTo("Usuario adicionado com sucesso!"));
+
+	}
+	
+	
+	
 	
 	
 }
