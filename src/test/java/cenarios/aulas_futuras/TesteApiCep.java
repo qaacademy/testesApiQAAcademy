@@ -1,4 +1,4 @@
-package cenarios;
+package cenarios.aulas_futuras;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package cenarios;
+package cenarios.aulas_futuras;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 

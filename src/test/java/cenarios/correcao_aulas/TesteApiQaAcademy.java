@@ -1,4 +1,4 @@
-package cenarios;
+package cenarios.correcao_aulas;
 
 import java.util.HashMap;
 import java.util.Map;

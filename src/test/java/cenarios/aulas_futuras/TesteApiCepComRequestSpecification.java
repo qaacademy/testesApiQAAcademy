@@ -1,4 +1,4 @@
-package cenarios;
+package cenarios.aulas_futuras;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
